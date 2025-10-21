@@ -15,6 +15,7 @@ app.use(express.json());
 // });
 
 app.use("/api/user", userRouter);
+app.use("/api/jobs",)
 
 connectDB().then(() => {
     app.listen(process.env.PORT, () => {
