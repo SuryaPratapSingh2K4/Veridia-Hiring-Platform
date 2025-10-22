@@ -10,7 +10,7 @@ const applicationSchema = new mongoose.Schema(
         applicant: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true,
+        // required: true,
         },
         coverLetter: {
         type: String,
@@ -26,5 +26,5 @@ const applicationSchema = new mongoose.Schema(
     }
 );
 
-const application = mongoose.model("application", applicationSchema);
-export default application;
+const Application = mongoose.model("application", applicationSchema);
+export default Application;

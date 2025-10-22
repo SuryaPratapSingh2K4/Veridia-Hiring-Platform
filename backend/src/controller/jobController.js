@@ -1,4 +1,4 @@
-import Job from "../models/JobSchema";
+import Job from "../models/JobSchema.js";
 
 export async function CreateJob(req, res) {
     try {
@@ -24,13 +24,17 @@ export async function CreateJob(req, res) {
 
 export const listJobs = async (req, res) => {
     try {
+        console.log("✅ Reached /api/jobs endpoint");
+        console.log("User in request:", req.user);
         let filter = {};
-        if (req.user.role === "admin") {
+        if (req.user?.role === "admin") {
         filter = { postedBy: req.user._id };
         } else {
         filter = { isActive: true };
         }
+        console.log("Filter being used:", filter);
         const jobs = await Job.find(filter).populate("postedBy", "name email");
+        console.log("Jobs found:", jobs.length);
         res.json(jobs);
     } catch (error) {
         res.status(500).json({ message: "Internal Server Error" });
