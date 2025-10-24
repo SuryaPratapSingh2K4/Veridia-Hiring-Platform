@@ -1,7 +1,7 @@
 import React from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar"
-import { Login } from "../../backend/src/controller/userController";
+import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Navigate } from "react-router-dom";
 import PostJob from "./pages/admin/PostJob";
@@ -22,10 +22,8 @@ function RequireAuth({ children, role }) {
 
 function App() {
   return (
-    <div data-theme="corporate" className="min-h-screen">
       <Router>
         <Navbar />
-        <div className="max-w-6xl mx-auto px-4 py-8">
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
@@ -67,9 +65,9 @@ function App() {
             <Route path="*" element={<div>Page Not Found</div>} />
 
           </Routes>
-        </div>
+        
       </Router>
-    </div>
+    
   )
 }
 
