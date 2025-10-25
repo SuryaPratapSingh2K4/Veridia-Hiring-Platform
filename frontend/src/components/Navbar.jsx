@@ -36,9 +36,6 @@ function Navbar() {
                         </>
                     )}
 
-
-
-
                     {role === "admin" && (
                         <div className='flex gap-4'>
                             <Link to='/admin' className='px-4 border bg-white py-1 rounded-lg shadow-sm shadow-black hover:bg-slate-300 font-semibold'>Dashboard</Link>
@@ -54,8 +51,11 @@ function Navbar() {
                     )}
 
                     {role === "user" && (
-                        <div>
-                            <Link to='/user'>Jobs</Link>
+                        <div className='flex gap-4'>
+                            <Link to='/user' className='px-4 border bg-white py-1 rounded-lg shadow-sm shadow-black hover:bg-slate-300 font-semibold'>Jobs</Link>
+                            <Link to='/user/my-applications' className='px-4 border bg-white py-1 rounded-lg shadow-sm shadow-black hover:bg-slate-300 font-semibold'>
+                                My Applications
+                            </Link>
                         </div>
                     )}
                 </div>
