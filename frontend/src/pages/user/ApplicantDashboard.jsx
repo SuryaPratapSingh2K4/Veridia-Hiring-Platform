@@ -17,8 +17,13 @@ function ApplicantDashboard() {
                     }
                 })
                 const data = await res.json();
+                const sorted = data.sort((a, b) => {
+                    if (a.pinned === b.pinned)
+                        return new Date(b.createdAt) - new Date(a.createdAt);
+                    return b.pinned - a.pinned;
+                });
                 if (!res.ok) throw new Error(data.message || "Failed to Fetch");
-                setJobs(data);
+                setJobs(sorted);
             }
             fetchJobs();
         } catch (error) {
@@ -29,6 +34,7 @@ function ApplicantDashboard() {
     }, [token])
 
     useEffect(() => {
+        if (!search) return setFilteredJob(jobs);
         const lowercase = search.toLowerCase();
         const filtered = jobs.filter((j) => {
             const title = j.title.toLowerCase();
@@ -41,10 +47,10 @@ function ApplicantDashboard() {
                 company.includes(lowercase) ||
                 location.includes(lowercase) ||
                 type.includes(lowercase)
-            )
-        })
+            );
+        });
         setFilteredJob(filtered);
-    }, [jobs, search])
+    }, [jobs, search]);
 
     return (
         <div className='p-8'>
@@ -108,6 +114,9 @@ function ApplicantDashboard() {
 
                                 <label className="font-bold">Job Requirements:</label>
                                 <h3 className="text-gray-700">{j.requirements}</h3>
+
+                                <label className="font-bold">Job Status:</label>
+                                <h3 className="text-gray-700">{j.isActive}</h3>
 
                                 <div className="mt-2">
                                     <Link

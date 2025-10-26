@@ -6,7 +6,8 @@ function ApplicantForm() {
     const [coverLetter, SetCoverLetter] = useState("");
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
-    const [jobDetails, setJobDetails] = useState(null);
+    const [loading, setLoading] = useState(true)
+    const [jobDetails, setJobDetails] = useState([]);
     const handleApply = async (e) => {
         e.preventDefault();
         try {
@@ -41,61 +42,35 @@ function ApplicantForm() {
                 const data = await res.json();
                 console.log(data);
                 setJobDetails(data);
-
             }
             fetchDetails();
         } catch (error) {
             console.error(error.message);
+        } finally {
+            setLoading(false);
         }
     }, [id, token])
     return (
-        <div className='p-20'>
+        <div className='p-8'>
             <div className='mt-12 flex flex-col items-center gap-4'>
                 <h1 className="underline font-bold text-2xl">Apply for Job</h1>
-                <form onClick={handleApply}>
-                    {/* <div className='w-full gap-4 flex flex-row'>
-                        <div className='flex flex-col'>
-                            <label className='font-bold mb-2'>Recruitment Title</label>
-                            <input type="text" placeholder='Title' value={jobDetails.title} className='input bg-slate-50 text-black shadow-sm shadow-black rounded-lg py-2 px-4 w-60' />
-                        </div>
-                        <div className='flex flex-col'>
-                            <label className='font-bold mb-2'>Company Name</label>
-                            <input type="text" placeholder='Company' value={jobDetails.company} className='input bg-slate-50 text-black shadow-sm shadow-black rounded-lg py-2 px-4 w-60' />
-                        </div>
-                    </div> */}
+                {loading && <div className="flex text-3xl font-bold mt-20">Loading....</div>}
+                <form onSubmit={handleApply} className='flex flex-col w-full max-w-lg shadow-black border p-8 rounded-lg shadow-sm'>
 
-{/* 
-                    <div className='w-full gap-4 flex flex-row'>
-                        <div className='flex flex-col'>
-                            <label className='font-bold mb-2'>Location</label>
-                            <input type="text" placeholder='Location' value={jobDetails.location} className='input bg-slate-50 text-black shadow-sm shadow-black rounded-lg py-2 px-4 w-60' />
-                        </div>
-                        <div className='flex flex-col'>
-                            <label className='font-bold mb-2'>Job-Type</label>
-                            <select className='bg-slate-50 text-black shadow-sm shadow-black rounded-lg py-2 px-4 w-60' value={jobDetails.type}>
-                                <option value="full-time">Full-Time</option>
-                                <option value="part-time">Part-Time</option>
-                                <option value="Internship">Internship</option>
-                                <option value="Contract">Contract</option>
-                            </select>
-                        </div>
-                    </div> */}
+                    <label className='font-bold mb-2'>Recruitment Title : <span className='font-normal'>{jobDetails.title}</span></label>
 
+                    <label className='font-bold mb-2'>Company Name : <span className='font-normal'>{jobDetails.company}</span></label>
 
-                    <div className='flex flex-col'>
-                        <label className='font-bold mb-2'>Requirements</label>
-                        <p className= 'bg-slate-50 text-black shadow-sm shadow-black rounded-lg py-2 px-4 w-full' >{jobDetails.title}</p>
-                        {/* <input type="text" placeholder='Requirements' value={jobDetails.requirements} className='input bg-slate-50 text-black shadow-sm shadow-black rounded-lg py-2 px-4 w-full' /> */}
-                    </div>
+                    <label className='font-bold mb-2'>Location : <span className='font-normal'>{jobDetails.location}</span></label>
 
+                    <label className='font-bold mb-2'>Job-Type : <span className='font-normal'>{jobDetails.type}</span></label>
 
-                    <div className='flex flex-col'>
-                        <textarea
-                            value={coverLetter}
-                            onChange={(e) => SetCoverLetter(e.target.value)}
-                            placeholder='Cover-Letter' className='input bg-slate-50 text-black shadow-sm shadow-black rounded-lg py-2 px-4 w-full' rows={4}></textarea>
-                        <button className='w-full bg-green-600 py-2 rounded-lg shadow-black shadow-md text-white font-semibold hover:bg-green-700'>Submit</button>
-                    </div>
+                    <textarea
+                        value={coverLetter}
+                        onChange={(e) => SetCoverLetter(e.target.value)}
+                        placeholder='Cover-Letter' className='input bg-slate-50 text-black shadow-sm shadow-black rounded-lg py-2 px-4 mt-2 mb-4 w-full' rows={4}></textarea>
+                    <button className='w-full bg-green-600 py-2 rounded-lg shadow-black shadow-md text-white font-semibold hover:bg-green-700'>Submit</button>
+
 
                 </form>
             </div>
