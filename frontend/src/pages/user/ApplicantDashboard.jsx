@@ -111,7 +111,7 @@ function ApplicantDashboard() {
 
                                 <div className="mt-2">
                                     <Link
-                                        to={`/user/apply${j._id}`}
+                                        to={`/user/apply/${j._id}`}
                                         className="underline hover:font-bold text-blue-700"
                                     >
                                         Apply

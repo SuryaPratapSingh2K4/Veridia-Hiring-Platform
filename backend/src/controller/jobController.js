@@ -67,3 +67,15 @@ export const deleteJob = async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 };
+
+export async function getJobById(req,res) {
+    try {
+        const user = req.user;
+        const JobId = req.params.id;
+        const job = await Job.findById({_id: JobId, userId: user})
+        res.status(201).json(job)
+    } catch (error) {
+        console.error(error.message);
+        
+    }
+}
