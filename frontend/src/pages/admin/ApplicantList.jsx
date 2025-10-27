@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 function ApplicantList() {
     const token = localStorage.getItem("token");
@@ -47,6 +48,29 @@ function ApplicantList() {
         }
     }, [filterJob, applications]);
 
+    const handleStatusChange = async (id, status) => {
+        try {
+            const res = await fetch(`http://localhost:7000/api/application/${id}/status`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ status })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                toast.error(data.message || "Failed to update status");
+                return; // ❗ stop execution if failed
+            }
+            toast.success(`Status updated to ${status}`);
+            setApplications((prev) => (prev.map((a) => a._id === id ? { ...a, status } : a)));
+        } catch (error) {
+            console.error(error.message);
+            toast.error("Error updating status");
+        }
+    }
+
     // ✅ Render section
     return (
         <div className="p-8">
@@ -72,7 +96,7 @@ function ApplicantList() {
                     </select>
                 </div>
 
-                
+
 
 
                 {/* Loading State */}
@@ -123,10 +147,35 @@ function ApplicantList() {
                                 <p className="text-gray-700">{a.coverLetter || "Job-Description not available"}</p>
                             </label>
 
-                            <label className="font-bold">
-                                Status:{" "}
-                                <span className="font-normal">{a.status || "Pending"}</span>
-                            </label>
+                            <div className="flex flex-row">
+                                <label className="font-bold">
+                                    Status:
+                                </label>
+                                <select
+                                    className="border rounded p-1 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                    value={a.status}
+                                    onChange={(e) =>
+                                        handleStatusChange(a._id, e.target.value)
+                                    }
+                                >
+                                    <option value="Pending">Pending</option>
+                                    <option value="Reviewed">Reviewed</option>
+                                    <option value="Accepted">Accepted</option>
+                                    <option value="Rejected">Rejected</option>
+                                </select>
+                            </div>
+                            <div
+                                className={`text-xs font-semibold px-2 py-1 rounded-full w-fit ml-auto ${a.status === "Accepted"
+                                    ? "bg-green-100 text-green-700"
+                                    : a.status === "Rejected"
+                                        ? "bg-red-100 text-red-700"
+                                        : a.status === "Reviewed"
+                                            ? "bg-blue-100 text-blue-700"
+                                            : "bg-gray-100 text-gray-700"
+                                    }`}
+                            >
+                                {a.status}
+                            </div>
                         </div>
                     ))
                 )}

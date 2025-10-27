@@ -113,11 +113,11 @@ function MyApplicant() {
                                 <label className="font-bold">Job Requirements:</label>
                                 <h3 className="text-gray-700">{j.job.requirements}</h3>
 
-                                <div className="flex flex-row gap-1">
+                                <div className="flex flex-row gap-1 mt-2">
                                     <label className="font-bold">Job Status:</label>
-                                    <h3 className="text-gray-700">{j.status}</h3>
-
+                                    <h3 className={`rounded-full px-3 py-1 text-xs font-semibold ${j.status === "Accepted" ? "bg-green-100 text-green-700" : j.status === "Rejected" ? "bg-red-100 text-red-700" : j.status === "Reviewed" ? "bg-blue-100 text-blue-700" : "bg-gray-100 text-gray-700"}`}>{j.status}</h3>
                                 </div>
+                                
                             </div>
                         ))
                     )

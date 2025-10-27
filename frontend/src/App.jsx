@@ -1,4 +1,3 @@
-import React from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Navbar from "./components/Navbar"
 import Login from "./pages/Login";
@@ -10,6 +9,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import ApplicantDashboard from "./pages/user/ApplicantDashboard";
 import ApplicantForm from "./pages/user/ApplicantForm";
 import MyApplicant from "./pages/user/MyApplicant";
+import { Toaster } from 'react-hot-toast'
 
 
 function RequireAuth({ children, role }) {
@@ -22,52 +22,53 @@ function RequireAuth({ children, role }) {
 
 function App() {
   return (
-      <Router>
-        <Navbar />
-          <Routes>
-            <Route path="/" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+    <Router>
+      <Navbar />
+      <Toaster position='top-right' reverseOrder={false} />
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
 
-            <Route path="/admin/post-job" element={<RequireAuth role="admin">
-              <PostJob />
-            </RequireAuth>} />
+        <Route path="/admin/post-job" element={<RequireAuth role="admin">
+          <PostJob />
+        </RequireAuth>} />
 
-            <Route path="/admin/applicants" element={
-              <RequireAuth role="admin">
-                <ApplicantList />
-              </RequireAuth>
-            } />
+        <Route path="/admin/applicants" element={
+          <RequireAuth role="admin">
+            <ApplicantList />
+          </RequireAuth>
+        } />
 
-            <Route path="/admin" element={
-              <RequireAuth role="admin">
-                <AdminDashboard />
-              </RequireAuth>
-            } />
+        <Route path="/admin" element={
+          <RequireAuth role="admin">
+            <AdminDashboard />
+          </RequireAuth>
+        } />
 
-            <Route path="/user" element={
-              <RequireAuth role="user">
-                <ApplicantDashboard />
-              </RequireAuth>
-            } />
+        <Route path="/user" element={
+          <RequireAuth role="user">
+            <ApplicantDashboard />
+          </RequireAuth>
+        } />
 
-            <Route path="/user/apply/:id" element={
-              <RequireAuth role="user">
-                <ApplicantForm />
-              </RequireAuth>
-            } />
+        <Route path="/user/apply/:id" element={
+          <RequireAuth role="user">
+            <ApplicantForm />
+          </RequireAuth>
+        } />
 
-            <Route path="/user/my-applications" element={
-              <RequireAuth role="user">
-                <MyApplicant />
-              </RequireAuth>
-            } />
+        <Route path="/user/my-applications" element={
+          <RequireAuth role="user">
+            <MyApplicant />
+          </RequireAuth>
+        } />
 
-            <Route path="*" element={<div>Page Not Found</div>} />
+        <Route path="*" element={<div>Page Not Found</div>} />
 
-          </Routes>
-        
-      </Router>
-    
+      </Routes>
+
+    </Router>
+
   )
 }
 
