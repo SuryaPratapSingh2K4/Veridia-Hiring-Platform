@@ -115,9 +115,6 @@ function ApplicantDashboard() {
                                 <label className="font-bold">Job Requirements:</label>
                                 <h3 className="text-gray-700">{j.requirements}</h3>
 
-                                <label className="font-bold">Job Status:</label>
-                                <h3 className="text-gray-700">{j.isActive}</h3>
-
                                 <div className="mt-2">
                                     <Link
                                         to={`/user/apply/${j._id}`}

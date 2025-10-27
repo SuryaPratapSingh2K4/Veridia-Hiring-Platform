@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom'
 
 function ApplicantForm() {
@@ -41,6 +42,7 @@ function ApplicantForm() {
                 })
                 const data = await res.json();
                 console.log(data);
+                toast.success("Successfully applied for the job")
                 setJobDetails(data);
             }
             fetchDetails();

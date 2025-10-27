@@ -1,4 +1,5 @@
 import React from 'react'
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
@@ -9,6 +10,7 @@ function Navbar() {
         localStorage.removeItem("token");
         localStorage.removeItem("role");
         localStorage.removeItem("user");
+        toast.success("Successfully Logged-Out")
         navigate("/");
     }
     const isLoginPage = location.pathname === '/';

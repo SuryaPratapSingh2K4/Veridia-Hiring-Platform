@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 function PostJob() {
@@ -31,7 +32,8 @@ function PostJob() {
             })
             const data = await res.json();
             if (!res.ok) return alert(data.message || "Failed to create");
-            alert("Job Created");
+            // alert("Job Created");
+            toast.success("Job Created Successfully");
             navigate("/admin")
 
         } catch (error) {

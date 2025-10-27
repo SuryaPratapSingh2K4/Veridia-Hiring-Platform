@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { FaRegEye } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -27,7 +28,8 @@ function Login() {
             localStorage.setItem("token", data.token);
             localStorage.setItem("role", data.user.role);
             localStorage.setItem("user", JSON.stringify(data.user));
-            alert("Login Successfully");
+            // alert("Login Successfully");
+            toast.success("Successfully Logged In")
             if (data.user.role === 'admin') return navigate('/admin');
             else navigate("/user");
             res.status(201).json(data);
