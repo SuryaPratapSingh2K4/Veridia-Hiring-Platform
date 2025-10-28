@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 const applicationSchema = new mongoose.Schema(
     {
@@ -14,6 +15,10 @@ const applicationSchema = new mongoose.Schema(
         },
         coverLetter: {
         type: String,
+        },
+        resume: {
+            type: File,
+            required: true
         },
         status: {
         type: String,

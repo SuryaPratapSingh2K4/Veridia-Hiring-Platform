@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 function ApplicantForm() {
     const { id } = useParams();
     const [coverLetter, SetCoverLetter] = useState("");
+    const [file, setFile] = useState();
     const token = localStorage.getItem("token");
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true)
@@ -14,7 +15,8 @@ function ApplicantForm() {
         try {
             const body = {
                 job: id,
-                coverLetter: coverLetter
+                coverLetter: coverLetter,
+                
             }
             const res = await fetch('http://localhost:7000/api/application/apply', {
                 method: 'POST',
@@ -26,7 +28,7 @@ function ApplicantForm() {
             })
             const data = await res.json();
             if (!res.ok) return alert(data.message || "Failed to apply");
-            alert("Application submitted");
+            toast.success("Successfully applied for the job")
             navigate('/user')
         } catch (error) {
             console.error(error.message);
@@ -42,7 +44,7 @@ function ApplicantForm() {
                 })
                 const data = await res.json();
                 console.log(data);
-                toast.success("Successfully applied for the job")
+
                 setJobDetails(data);
             }
             fetchDetails();
@@ -66,6 +68,8 @@ function ApplicantForm() {
                     <label className='font-bold mb-2'>Location : <span className='font-normal'>{jobDetails.location}</span></label>
 
                     <label className='font-bold mb-2'>Job-Type : <span className='font-normal'>{jobDetails.type}</span></label>
+
+                    <label className='font-bold mb-2'>Resume : <input type="file" value={file} onChange={(e) => setFile(e.target.value)} /></label>
 
                     <textarea
                         value={coverLetter}
