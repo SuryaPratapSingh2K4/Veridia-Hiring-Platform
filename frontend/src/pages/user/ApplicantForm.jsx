@@ -12,28 +12,31 @@ function ApplicantForm() {
     const [jobDetails, setJobDetails] = useState([]);
     const handleApply = async (e) => {
         e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("jobId", id);
+        formData.append("coverLetter", coverLetter);
+        formData.append("resume", file);  // ✅ only this
+
         try {
-            const body = {
-                job: id,
-                coverLetter: coverLetter,
-                
-            }
-            const res = await fetch('http://localhost:7000/api/application/apply', {
-                method: 'POST',
+            const res = await fetch("http://localhost:7000/api/application/apply", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${token}`
+                    Authorization: `Bearer ${token}`, // ❌ no "Content-Type"
                 },
-                body: JSON.stringify(body)
-            })
+                body: formData,
+            });
+
             const data = await res.json();
             if (!res.ok) return alert(data.message || "Failed to apply");
-            toast.success("Successfully applied for the job")
-            navigate('/user')
+            toast.success("Successfully applied for the job");
+            navigate("/user");
         } catch (error) {
             console.error(error.message);
         }
-    }
+    };
+
+
     useEffect(() => {
         try {
             const fetchDetails = async () => {
@@ -69,7 +72,7 @@ function ApplicantForm() {
 
                     <label className='font-bold mb-2'>Job-Type : <span className='font-normal'>{jobDetails.type}</span></label>
 
-                    <label className='font-bold mb-2'>Resume : <input type="file" value={file} onChange={(e) => setFile(e.target.value)} /></label>
+                    <label className='font-bold mb-2'>Resume : <input type="file" name='resume' accept='.pdf, .doc, .docx' onChange={(e) => setFile(e.target.files[0])} /></label>
 
                     <textarea
                         value={coverLetter}

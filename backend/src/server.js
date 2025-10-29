@@ -10,7 +10,8 @@ import applicationRouter from "./routes/applicationRoutes.js";
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({limit: "25mb"}));
+app.use(express.urlencoded({extended: true, limit: "25mb"}))
 
 // app.get("/", (req, res) => {
 //     res.send("API is running...");
@@ -19,6 +20,13 @@ app.use(express.json());
 app.use("/api/user", userRouter);
 app.use("/api/jobs", jobRouter);
 app.use("/api/application", applicationRouter);
+
+app.use((err, req, res, next) => {
+    if (err.code === "LIMIT_FILE_SIZE") {
+        return res.status(400).json({ message: "File too large. Max 10 MB allowed." });
+    }
+    next(err);
+});
 
 connectDB().then(() => {
     app.listen(process.env.PORT, () => {
