@@ -53,9 +53,9 @@ function MyApplicant() {
     }, [jobs, search])
 
     return (
-        <div className='p-8'>
+        <div className='p-8 min-h-screen bg-gradient-to-br from-purple-900 via-black to-indigo-900 '>
             <div className='mt-12 flex flex-col items-center gap-4'>
-                <h1 className="underline font-bold text-2xl">My Applications</h1>
+                <h1 className="underline font-bold text-2xl text-white">My Applications</h1>
                 <input
                     type="search"
                     className="px-6 py-2 bg-slate-50 text-black shadow-sm shadow-black rounded-lg w-full max-w-xl"

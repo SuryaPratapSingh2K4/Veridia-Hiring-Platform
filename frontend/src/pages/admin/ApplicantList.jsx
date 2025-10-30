@@ -84,9 +84,9 @@ function ApplicantList() {
 
     // ✅ Render section
     return (
-        <div className="p-8">
+        <div className="p-8 min-h-screen bg-gradient-to-br from-purple-900 via-black to-indigo-900">
             <div className="mt-12 flex flex-col items-center gap-4">
-                <h1 className="underline font-bold text-2xl">Job Applicants</h1>
+                <h1 className="underline font-bold text-2xl text-white">Job Applicants</h1>
 
                 {/* Job Filter Dropdown */}
                 <div className="flex gap-4">

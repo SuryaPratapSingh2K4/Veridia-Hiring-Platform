@@ -58,9 +58,9 @@ function AdminDashboard() {
     }, [jobs, search]);
 
     return (
-        <div className="p-8 bg-black">
+        <div className="p-8 min-h-screen bg-gradient-to-br from-purple-900 via-black to-indigo-900">
             <div className="mt-12 flex flex-col items-center gap-4">
-                <h1 className="underline font-bold text-2xl">Admin Dashboard</h1>
+                <h1 className="mt-8 underline font-bold text-2xl text-white">Admin Dashboard</h1>
 
                 {/* Search and Post Job */}
                 <div className="flex gap-4">

@@ -58,11 +58,11 @@ function ApplicantForm() {
         }
     }, [id, token])
     return (
-        <div className='p-8'>
+        <div className='p-8 min-h-screen bg-gradient-to-br from-purple-900 via-black to-indigo-900 '>
             <div className='mt-12 flex flex-col items-center gap-4'>
-                <h1 className="underline font-bold text-2xl">Apply for Job</h1>
+                <h1 className="underline font-bold text-2xl text-white">Apply for Job</h1>
                 {loading && <div className="flex text-3xl font-bold mt-20">Loading....</div>}
-                <form onSubmit={handleApply} className='flex flex-col w-full max-w-lg shadow-black border p-8 rounded-lg shadow-sm'>
+                <form onSubmit={handleApply} className='flex flex-col w-full max-w-lg shadow-black border p-8 rounded-lg shadow-sm text-white'>
 
                     <label className='font-bold mb-2'>Recruitment Title : <span className='font-normal'>{jobDetails.title}</span></label>
 

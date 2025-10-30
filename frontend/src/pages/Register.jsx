@@ -34,9 +34,9 @@ function Register() {
     };
     return (
         <div className="h-screen w-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-900 via-black to-indigo-900 text-white">
-            <div className="bg-gray-200 px-7 py-10 rounded w-96 shadow-md">
+            <div className="bg-white px-7 py-10 rounded w-96 shadow-md">
                 <form onSubmit={handleRegister} className="flex flex-col gap-4">
-                    <h4 className="text-2xl mb-4 font-bold">Sign Up</h4>
+                    <h4 className="text-2xl mb-4 font-bold text-purple-700">Sign Up</h4>
 
                     <input
                         type="text"
@@ -44,7 +44,7 @@ function Register() {
                         required
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        className="w-full py-2 rounded-lg px-2 shadow-sm"
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600"
                     />
 
                     <input
@@ -53,7 +53,7 @@ function Register() {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full py-2 rounded-lg px-2 shadow-sm"
+                        className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600"
                     />
 
                     <div className="relative">
@@ -63,7 +63,7 @@ function Register() {
                             required
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            className="w-full py-2 rounded-lg px-2 shadow-sm"
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600"
                         />
 
                         <FaRegEye
@@ -73,18 +73,18 @@ function Register() {
                         />
                     </div>
 
-                    <select className='w-full py-2 rounded-lg px-2 shadow-sm' value={role} onChange={(e) => setRole(e.target.value)}>
-                        <option value="user">user</option>
-                        <option value="admin">admin</option>
+                    <select className='w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-600 text-gray-400' value={role} onChange={(e) => setRole(e.target.value)}>
+                        <option value="user" className='text-gray-500'>user</option>
+                        <option value="admin" className='text-gray-500'>admin</option>
                     </select>
 
                     <button className="w-full py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white">
                         {loading ? 'Signing up...' : 'Sign Up'}
                     </button>
 
-                    <h4 className="text-center">
+                    <h4 className="text-center text-gray-600 text-sm mt-2">
                         Already have an account.{' '}
-                        <Link to="/" className="underline font-bold">
+                        <Link to="/" className="text-purple-700 font-semibold hover:underline">
                             Login Here
                         </Link>
                     </h4>
