@@ -3,8 +3,10 @@ import Job from "../models/JobSchema.js";
 import sendEmail from "../utils/sendEmail.js";
 import crypto from "crypto";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
+// import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import dotenv from "dotenv";
 import s3 from "../config/s3.js";
+import getResumeUrl from "../utils/resumeURL.js";
 dotenv.config();
 
 const randomFileName = (bytes = 32) =>
@@ -132,7 +134,15 @@ export async function getApplicationForAdmin(req, res) {
       .populate("job")
       .populate("applicant", "name email");
 
-    return res.json(apps);
+      for(const a of apps){
+        if(a.resume){
+          const key = a.resume.split(".com/")[1];
+          const signedUrl = await getResumeUrl(key);
+          if(signedUrl) a.resume = signedUrl;
+        }
+      }
+
+    res.json(apps);
   } catch (error) {
     console.error("getApplicationForAdmin error:", error);
     return res.status(500).json({

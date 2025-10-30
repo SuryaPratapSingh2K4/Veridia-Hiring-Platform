@@ -53,7 +53,7 @@ function ApplicantDashboard() {
     }, [jobs, search]);
 
     return (
-        <div className='p-8'>
+        <div className='p-8 bg-black'>
             <div className='mt-12 flex flex-col items-center gap-4'>
                 <h1 className="underline font-bold text-2xl">Available Jobs</h1>
 

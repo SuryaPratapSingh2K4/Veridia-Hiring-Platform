@@ -33,7 +33,7 @@ function Register() {
         }
     };
     return (
-        <div className="h-screen w-screen flex items-center justify-center bg-gray-50 overflow-hidden">
+        <div className="h-screen w-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-purple-900 via-black to-indigo-900 text-white">
             <div className="bg-gray-200 px-7 py-10 rounded w-96 shadow-md">
                 <form onSubmit={handleRegister} className="flex flex-col gap-4">
                     <h4 className="text-2xl mb-4 font-bold">Sign Up</h4>

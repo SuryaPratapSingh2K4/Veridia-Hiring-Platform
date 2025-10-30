@@ -9,7 +9,9 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import ApplicantDashboard from "./pages/user/ApplicantDashboard";
 import ApplicantForm from "./pages/user/ApplicantForm";
 import MyApplicant from "./pages/user/MyApplicant";
+
 import { Toaster } from 'react-hot-toast'
+
 
 
 function RequireAuth({ children, role }) {
@@ -26,6 +28,7 @@ function App() {
       <Navbar />
       <Toaster position='top-right' reverseOrder={false} />
       <Routes>
+
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
 

@@ -150,7 +150,7 @@ function ApplicantList() {
 
                             <label className="font-bold">
                                 Cover Letter:
-                                <p className="text-gray-700">
+                                <p className="font-normal">
                                     {a.coverLetter || "No cover letter provided"}
                                 </p>
                             </label>

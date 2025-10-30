@@ -20,9 +20,9 @@ function Navbar() {
         else navigate('/user');
     }
     return (
-        <nav className='top-0 left-0 w-full fixed bg-gray-300 shadow-sm'>
-            <div className='max-w-6xl mx-auto px-4 py-3 flex items-center justify-between'>
-                <Link to={handleBoard} className='text-2xl text-center font-bold'>
+        <nav className='top-0 left-0 w-full fixed bg-black shadow-sm'>
+            <div className='max-w-6xl mx-auto px-4 py-4 flex items-center justify-between'>
+                <Link to={handleBoard} className='text-2xl text-center font-bold text-white'>
                     Veridia Hiring
                 </Link>
                 <div className='flex'>
@@ -40,30 +40,30 @@ function Navbar() {
 
                     {role === "admin" && (
                         <div className='flex gap-4'>
-                            <Link to='/admin' className='px-4 border bg-white py-1 rounded-lg shadow-sm shadow-black hover:bg-slate-300 font-semibold'>Dashboard</Link>
-                            <Link to='/admin/post-job' className='px-4 border bg-white py-1 rounded-lg shadow-sm shadow-black hover:bg-slate-300 font-semibold'>
+                            <Link to='/admin' className='px-4  bg-white py-1 rounded-lg shadow-md shadow-black hover:bg-black hover:text-white hover:shadow-white font-semibold'>Dashboard</Link>
+                            <Link to='/admin/post-job' className='px-4  bg-white py-1 rounded-lg shadow-md shadow-black hover:bg-black hover:text-white hover:shadow-white font-semibold'>
                                 Post Job
                             </Link>
-                            <Link to='/admin/applicants' className='px-4 border bg-white py-1 rounded-lg shadow-sm shadow-black hover:bg-slate-300 font-semibold'>
+                            <Link to='/admin/applicants' className='px-4  bg-white py-1 rounded-lg shadow-md shadow-black hover:bg-black hover:text-white font-semibold hover:shadow-white '>
                                 Applicants
                             </Link>
+                            <button onClick={handleLogOut} className='px-4 bg-white py-1 rounded-lg shadow-md shadow-black hover:bg-black font-semibold hover:font-bold text-red-600 hover:shadow-white '>LogOut</button>
                         </div>
 
 
                     )}
 
                     {role === "user" && (
-                        <div className='flex gap-4'>
-                            <Link to='/user' className='px-4 border bg-white py-1 rounded-lg shadow-sm shadow-black hover:bg-slate-300 font-semibold'>Jobs</Link>
-                            <Link to='/user/my-applications' className='px-4 border bg-white py-1 rounded-lg shadow-sm shadow-black hover:bg-slate-300 font-semibold'>
+                        <div className='flex gap-4 md:[gap-2]'>
+                            <Link to='/user' className='px-4  bg-white py-1 rounded-lg shadow-md shadow-black hover:bg-black hover:text-white hover:shadow-white font-semibold'>Jobs</Link>
+                            <Link to='/user/my-applications' className='px-4  bg-white py-1 rounded-lg shadow-md shadow-black hover:bg-black hover:text-white hover:shadow-white font-semibold'>
                                 My Applications
                             </Link>
+                            <button onClick={handleLogOut} className='px-4 bg-white py-1 rounded-lg shadow-md shadow-black hover:bg-black font-semibold hover:font-bold text-red-600 hover:shadow-white '>LogOut</button>
                         </div>
                     )}
                 </div>
-                <div>
-                    <button onClick={handleLogOut} className='px-4 border bg-white py-1 rounded-lg shadow-sm shadow-black hover:bg-slate-300 font-semibold text-red-600'>LogOut</button>
-                </div>
+
             </div>
         </nav>
     )
