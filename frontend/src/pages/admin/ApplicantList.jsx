@@ -108,96 +108,101 @@ function ApplicantList() {
                 </div>
 
                 {/* Loading State */}
-                {loading ? (
-                    <div className="text-3xl font-bold mt-20">Loading...</div>
-                ) : applications.length === 0 ? (
-                    // ✅ No applications at all
-                    <div className="px-4 py-6 w-full">
-                        <div className="mx-auto max-w-7xl bg-base-200 rounded-2xl shadow-md p-6">
-                            <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-4">
-                                No applicants yet
-                            </h1>
-                            <p className="text-sm md:text-base text-gray-400">
-                                Once users apply for your jobs, their details will appear here.
-                            </p>
-                        </div>
-                    </div>
-                ) : (
-                    // ✅ Map through filtered applicants (like AdminDashboard)
-                    filteredApps.map((a) => (
-                        <div
-                            key={a._id}
-                            className="flex flex-col border shadow-sm shadow-black p-4 mt-2 rounded w-full bg-white hover:shadow-md transition-all"
-                        >
-                            <label className="font-bold">
-                                Applicant Name:{" "}
-                                <span className="font-normal">
-                                    {a.applicant?.name || "Unknown"}
-                                </span>
-                            </label>
-
-                            <label className="font-bold">
-                                Email:{" "}
-                                <span className="font-normal">
-                                    {a.applicant?.email || "No Email"}
-                                </span>
-                            </label>
-
-                            <label className="font-bold">
-                                Applied Job:{" "}
-                                <span className="font-normal">{a.job?.title || "Job Deleted"}</span>
-                            </label>
-
-                            <label className="font-bold">
-                                Cover Letter:
-                                <p className="font-normal">
-                                    {a.coverLetter || "No cover letter provided"}
-                                </p>
-                            </label>
-
-                            {/* ✅ Resume Button */}
-                            {a.resume && (
-                                <div className="mt-3">
-                                    <a
-                                        href={a.resume}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-block bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600 transition-all"
-                                    >
-                                        📄 View Resume
-                                    </a>
-                                </div>
-                            )}
-
-                            <div className="flex flex-row items-center gap-3 mt-3">
-                                <label className="font-bold">Status:</label>
-                                <select
-                                    className="border rounded p-1 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                                    value={a.status}
-                                    onChange={(e) => handleStatusChange(a._id, e.target.value)}
-                                >
-                                    <option value="Pending">Pending</option>
-                                    <option value="Reviewed">Reviewed</option>
-                                    <option value="Accepted">Accepted</option>
-                                    <option value="Rejected">Rejected</option>
-                                </select>
-
-                                <div
-                                    className={`text-xs font-semibold px-2 py-1 rounded-full w-fit ${a.status === "Accepted"
-                                            ? "bg-green-100 text-green-700"
-                                            : a.status === "Rejected"
-                                                ? "bg-red-100 text-red-700"
-                                                : a.status === "Reviewed"
-                                                    ? "bg-blue-100 text-blue-700"
-                                                    : "bg-gray-100 text-gray-700"
-                                        }`}
-                                >
-                                    {a.status}
+                <div className="w-full px-20">
+                    {
+                        loading ? (
+                            <div className="flex text-3xl font-bold mt-20">Loading...</div>
+                        ) : applications.length === 0 ? (
+                            // ✅ No applications at all
+                            <div className="px-4 py-6 w-full">
+                                <div className="mx-auto max-w-7xl bg-base-200 rounded-2xl shadow-md p-6">
+                                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-4">
+                                        No applicants yet
+                                    </h1>
+                                    <p className="text-sm md:text-base text-gray-400">
+                                        Once users apply for your jobs, their details will appear here.
+                                    </p>
                                 </div>
                             </div>
-                        </div>
-                    ))
-                )}
+                        ) : (
+                            // ✅ Map through filtered applicants (like AdminDashboard)
+                            filteredApps.map((a) => (
+                                <div
+                                    key={a._id}
+                                    className="flex flex-col border shadow-sm shadow-black p-4 mt-2 rounded w-full text-white hover:text-black hover:bg-white hover:shadow-md transition-all"
+                                >
+                                    <label className="font-bold">
+                                        Applicant Name:{" "}
+                                        <span className="font-normal italic">
+                                            {a.applicant?.name || "Unknown"}
+                                        </span>
+                                    </label>
+
+                                    <label className="font-bold">
+                                        Email:{" "}
+                                        <span className="font-normal italic">
+                                            {a.applicant?.email || "No Email"}
+                                        </span>
+                                    </label>
+
+                                    <label className="font-bold">
+                                        Applied Job:{" "}
+                                        <span className="font-normal italic">{a.job?.title || "Job Deleted"}</span>
+                                    </label>
+
+                                    <label className="font-bold">
+                                        Cover Letter:
+                                        <p className="font-normal italic">
+                                            {a.coverLetter || "No cover letter provided"}
+                                        </p>
+                                    </label>
+
+                                    {/* ✅ Resume Button */}
+                                    {a.resume && (
+                                        <div className="mt-3">
+                                            <a
+                                                href={a.resume}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-block bg-blue-500 text-white italic px-3 py-1 rounded-md hover:bg-blue-600 transition-all"
+                                            >
+                                                📄 View Resume
+                                            </a>
+                                        </div>
+                                    )}
+
+                                    <div className="flex flex-row items-center gap-3 mt-3">
+                                        <label className="font-bold">Status:</label>
+                                        <select
+                                            className="border rounded p-1 italic text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                                            value={a.status}
+                                            onChange={(e) => handleStatusChange(a._id, e.target.value)}
+                                        >
+                                            <option value="Pending">Pending</option>
+                                            <option value="Reviewed">Reviewed</option>
+                                            <option value="Accepted">Accepted</option>
+                                            <option value="Rejected">Rejected</option>
+                                        </select>
+
+                                        <div
+                                            className={`text-xs italic font-semibold px-2 py-1 rounded-full w-fit ${a.status === "Accepted"
+                                                ? "bg-green-100 text-green-700"
+                                                : a.status === "Rejected"
+                                                    ? "bg-red-100 text-red-700"
+                                                    : a.status === "Reviewed"
+                                                        ? "bg-blue-100 text-blue-700"
+                                                        : "bg-gray-100 text-gray-700"
+                                                }`}
+                                        >
+                                            {a.status}
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        )
+                    }
+                </div>
+
             </div>
         </div>
     );

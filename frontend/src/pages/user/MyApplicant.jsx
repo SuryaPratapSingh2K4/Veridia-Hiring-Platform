@@ -65,7 +65,8 @@ function MyApplicant() {
                 />
                 {loading && <div className="flex text-3xl font-bold mt-20">Loading....</div>}
 
-                {
+                <div className='flex flex-col gap-4 lg:px-20'>
+                    {
                     jobs.length === 0 ? (
                         <div className="px-4 py-6 w-full">
                             <div className="mx-auto max-w-7xl bg-base-200 rounded-2xl shadow-md p-6">
@@ -90,38 +91,39 @@ function MyApplicant() {
                         </div>
                     ) : (
                         filteredJob.map((j) => (
-                            <div key={j._id} className="flex flex-col border shadow-sm shadow-black p-4 mt-2 rounded w-full  bg-white">
+                            <div key={j._id} className="flex flex-col border shadow-sm shadow-black p-4 mt-2 rounded w-full text-white hover:text-black cursor-pointer  hover:bg-white">
                                 <label className="font-bold">
-                                    Title: <span className="font-normal">{j.job.title}</span>
+                                    Title: <span className="font-normal italic">{j.job.title}</span>
                                 </label>
 
                                 <label className="font-bold">
-                                    Company: <span className="font-normal">{j.job.company}</span>
+                                    Company: <span className="font-normal italic">{j.job.company}</span>
                                 </label>
 
                                 <label className="font-bold">
-                                    Location: <span className="font-normal">{j.job.location}</span>
+                                    Location: <span className="font-normal italic">{j.job.location}</span>
                                 </label>
 
                                 <label className="font-bold">
-                                    Type: <span className="font-normal">{j.job.type}</span>
+                                    Type: <span className="font-normal italic">{j.job.type}</span>
                                 </label>
 
                                 <label className="font-bold">Job Description:</label>
-                                <h3 className="text-gray-700">{j.job.description}</h3>
+                                <h3 className="italic">{j.job.description}</h3>
 
                                 <label className="font-bold">Job Requirements:</label>
-                                <h3 className="text-gray-700">{j.job.requirements}</h3>
+                                <h3 className="italic">{j.job.requirements}</h3>
 
                                 <div className="flex flex-row gap-1 mt-2">
                                     <label className="font-bold">Job Status:</label>
-                                    <h3 className={`rounded-full px-3 py-1 text-xs font-semibold ${j.status === "Accepted" ? "bg-green-100 text-green-700" : j.status === "Rejected" ? "bg-red-100 text-red-700" : j.status === "Reviewed" ? "bg-blue-100 text-blue-700" : "bg-gray-100 text-gray-700"}`}>{j.status}</h3>
+                                    <h3 className={`rounded-full px-3 py-1 text-xs italic font-semibold ${j.status === "Accepted" ? "bg-green-100 text-green-700" : j.status === "Rejected" ? "bg-red-100 text-red-700" : j.status === "Reviewed" ? "bg-blue-100 text-blue-700" : "bg-gray-100 text-gray-700"}`}>{j.status}</h3>
                                 </div>
                                 
                             </div>
                         ))
                     )
                 }
+                </div>
 
             </div>
         </div>

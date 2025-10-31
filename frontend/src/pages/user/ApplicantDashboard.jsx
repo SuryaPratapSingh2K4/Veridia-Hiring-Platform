@@ -65,69 +65,71 @@ function ApplicantDashboard() {
                     onChange={(e) => setSearch(e.target.value)}
                 />
 
-                {
-                    loading ? (
-                        <div className="flex text-3xl font-bold mt-20">Loading....</div>
-                    ) : jobs.length === 0 ? (
-                        <div className="px-4 py-6 w-full">
-                            <div className="mx-auto max-w-7xl bg-base-200 rounded-2xl shadow-md p-6">
-                                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-4">
-                                    Welcome to Admin Dashboard
-                                </h1>
-                                <p className="text-sm md:text-base text-gray-400">
-                                    Post your first job to get started.
-                                </p>
-                            </div>
-                        </div>
-                    ) : filteredJob.length === 0 ? (
-                        <div className="px-4 py-6 w-full">
-                            <div className="mx-auto max-w-7xl bg-base-200 rounded-2xl shadow-md p-6">
-                                <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-4">
-                                    No jobs found
-                                </h1>
-                                <p className="text-sm md:text-base text-gray-400">
-                                    Try searching with different keywords or post a new job.
-                                </p>
-                            </div>
-                        </div>
-                    ) : (
-                        filteredJob.map((j) => (
-                            <div key={j._id} className="flex flex-col border shadow-sm shadow-black p-4 mt-2 rounded w-full  bg-white">
-                                <label className="font-bold">
-                                    Title: <span className="font-normal">{j.title}</span>
-                                </label>
-
-                                <label className="font-bold">
-                                    Company: <span className="font-normal">{j.company}</span>
-                                </label>
-
-                                <label className="font-bold">
-                                    Location: <span className="font-normal">{j.location}</span>
-                                </label>
-
-                                <label className="font-bold">
-                                    Type: <span className="font-normal">{j.type}</span>
-                                </label>
-
-                                <label className="font-bold">Job Description:</label>
-                                <h3 className="text-gray-700">{j.description}</h3>
-
-                                <label className="font-bold">Job Requirements:</label>
-                                <h3 className="text-gray-700">{j.requirements}</h3>
-
-                                <div className="mt-2">
-                                    <Link
-                                        to={`/user/apply/${j._id}`}
-                                        className="underline hover:font-bold text-blue-700"
-                                    >
-                                        Apply
-                                    </Link>
-
+                <div className='flex flex-col gap-4 lg:px-20'>
+                    {
+                        loading ? (
+                            <div className="flex text-3xl font-bold mt-20">Loading....</div>
+                        ) : jobs.length === 0 ? (
+                            <div className="px-4 py-6 w-full">
+                                <div className="mx-auto max-w-7xl bg-base-200 rounded-2xl shadow-md p-6">
+                                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-4">
+                                        Welcome to Admin Dashboard
+                                    </h1>
+                                    <p className="text-sm md:text-base text-gray-400">
+                                        Post your first job to get started.
+                                    </p>
                                 </div>
                             </div>
-                        ))
-                    )
-                }
+                        ) : filteredJob.length === 0 ? (
+                            <div className="px-4 py-6 w-full">
+                                <div className="mx-auto max-w-7xl bg-base-200 rounded-2xl shadow-md p-6">
+                                    <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-4">
+                                        No jobs found
+                                    </h1>
+                                    <p className="text-sm md:text-base text-gray-400">
+                                        Try searching with different keywords or post a new job.
+                                    </p>
+                                </div>
+                            </div>
+                        ) : (
+                            filteredJob.map((j) => (
+                                <div key={j._id} className="flex flex-col cursor-pointer border shadow-sm shadow-black p-4 mt-2 rounded w-full  hover:bg-white text-white hover:text-black">
+                                    <label className="font-bold">
+                                        Title: <span className="font-normal italic">{j.title}</span>
+                                    </label>
+
+                                    <label className="font-bold">
+                                        Company: <span className="font-normal italic">{j.company}</span>
+                                    </label>
+
+                                    <label className="font-bold">
+                                        Location: <span className="font-normal italic">{j.location}</span>
+                                    </label>
+
+                                    <label className="font-bold">
+                                        Type: <span className="font-normal italic">{j.type}</span>
+                                    </label>
+
+                                    <label className="font-bold">Job Description:</label>
+                                    <h3 className="italic">{j.description}</h3>
+
+                                    <label className="font-bold">Job Requirements:</label>
+                                    <h3 className="italic">{j.requirements}</h3>
+
+                                    <div className="mt-2">
+                                        <Link
+                                            to={`/user/apply/${j._id}`}
+                                            className="underline hover:font-bold italic"
+                                        >
+                                            Apply
+                                        </Link>
+
+                                    </div>
+                                </div>
+                            ))
+                        )
+                    }
+                </div>
 
             </div>
         </div>
