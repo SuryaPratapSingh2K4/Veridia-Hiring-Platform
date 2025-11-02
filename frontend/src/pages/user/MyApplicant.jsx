@@ -71,10 +71,10 @@ function MyApplicant() {
                         <div className="px-4 py-6 w-full">
                             <div className="mx-auto max-w-7xl bg-base-200 rounded-2xl shadow-md p-6">
                                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-semibold text-white mb-4">
-                                    Welcome to Admin Dashboard
+                                    Welcome to My Dashboard
                                 </h1>
                                 <p className="text-sm md:text-base text-gray-400">
-                                    Post your first job to get started.
+                                    Apply your first job to get the updates of the applied jobs.
                                 </p>
                             </div>
                         </div>
